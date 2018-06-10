@@ -10,7 +10,7 @@ from PPFtfim import *
 import matplotlib.pyplot as plt
 
 
-M=simplePureHamiltonian(20,1,0.2,0)
+M=simplePureHamiltonian(20,1,1,0)
 plt.matshow(M)
 plt.colorbar()
 plt.show()
