@@ -14,7 +14,7 @@ Created on Tue Jun  5 01:17:21 2018
 import numpy as np
 
 def pf(X):
-    
+        
     Ni=X.shape[0]
     Nj=X.shape[1]
     
@@ -49,12 +49,14 @@ def iter(X):
     B,C=getBC(X,i,j)
     
     invA=np.zeros((2 ,2), dtype=complex)
-    invA[1,0]=1/a
-    invA[0,1]=-invA[1,0]
-
-    XX=C+np.matmul(np.matmul(B.transpose(),invA),B)
     
-    a=a*(1-2*np.remainder(i+j-1,2))    # 可能存在的问题
+    if(a==0):
+        XX=C.fill(0)  # 如果最大的a是0，那么所有矩阵都是0
+    else:
+        invA[1,0]=1/a
+        invA[0,1]=-invA[1,0]
+        XX=C+np.matmul(np.matmul(B.transpose(),invA),B)    
+        a=a*(1-2*np.remainder(i+j-1,2))    # 可能存在的问题
     return a,XX
 
 def largest(X):
