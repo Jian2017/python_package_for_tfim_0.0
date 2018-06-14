@@ -22,5 +22,19 @@ def simplePureHamiltonian(L,h,lam1,lam2=0,lamlam1=0,lamlam2=0):
         M[i,i+2]=-lam2
         
     return M
+
+
+def DisorderedHamiltonian(L,h,lam1,lam2=0,lamlam1=0,lamlam2=0):
+    M=np.zeros((L,L))
+    for i in range(L):
+        M[i,i]=h
+    
+    for i in range(L-1):
+        M[i,i+1]=-lam1
+        
+    for i in range(L-2):
+        M[i,i+2]=-lam2
+        
+    return M
     
 

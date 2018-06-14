@@ -26,6 +26,8 @@ class tfim(object):
         self.u, self.s, self.vh = np.linalg.svd(M)
         
         self.AABBt0=self.aux_matrix_dynamics(0).real
+        
+
    
     def aux_matrix_dynamics_block_for_test(self,t):
         # this is for test purpose
@@ -66,22 +68,18 @@ class tfim(object):
         # 这里要特别注意 i,j和 数组的index相差1
         #  S is a 2(i+j-1) dimensional matrix
         S=np.zeros((2*(i+j-1),2*(i+j-1)), dtype=complex)  # DEBUG, dtype=complex can not miss, otherwise only cast to real part
-
         Mt=self.aux_matrix_dynamics(t)
         #M0=self.aux_matrix_dynamics(0.0)  # NEED TO BE IMPROVED
-        M0=self.AABBt0
-        
+        M0=self.AABBt0        
         AtA=Mt[0:self.L,0:self.L]
         AtB=Mt[0:self.L,self.L:]
         BtA=Mt[self.L:,0:self.L]
-        BtB=Mt[self.L:,self.L:]
-        
+        BtB=Mt[self.L:,self.L:]        
         AA=M0[0:self.L,0:self.L]
         AB=M0[0:self.L,self.L:]
         BA=M0[self.L:,0:self.L]
         BB=M0[self.L:,self.L:]
         #print(BB.shape)
-
         a=2*i-1
         b=2*(i+j-1)
      
@@ -237,6 +235,34 @@ class tfim(object):
         print(end - start)
 
         return sector
+    
+    def hanningWindow2D(self,L1,L2):
+        # the center is rolled to hh(0,0)
+        h1=np.hanning(2*L1-1)
+        h2=np.hanning(2*L2-1)
+        hh=np.zeros((2*L1-1,2*L2-1))
+        for i in range(2*L1-1):
+            for j in range(2*L2-1):
+                hh[i,j]=h1[i]*h2[j]
+        hh=np.roll(hh,L1,axis=0)        
+        hh=np.roll(hh,L2,axis=1) 
+        return hh
+    
+    def Swk(self,i,j,dt,tSteps):
+        Cnt=self.correlator_dynamics_sector(i,j,dt,tSteps)
+        R=(j-i+1)
+        CCCCnt=np.zeros((tSteps*2-1,R*2-1), dtype=complex)
+        CCCCnt[0:tSteps,0:R]=Cnt
+        CCCCnt[0:tSteps,R:2*R-1]=Cnt[:,1:R][:,::-1]
+        CCCCnt[tSteps:2*tSteps-1,0:R]=np.conjugate(Cnt[1:tSteps,:][::-1,:])
+        CCCCnt[tSteps:2*tSteps-1,R:2*R-1]=np.conjugate(Cnt[1:tSteps,1:R][::-1,::-1])
+
+        hh=self.hanningWindow2D(tSteps,R)
+        output=np.fft.fft2(np.multiply(CCCCnt,hh))
+        
+        return output.real
+
+        
     
     
     
