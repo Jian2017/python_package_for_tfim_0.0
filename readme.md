@@ -33,3 +33,10 @@ then use Pfaffian, converting many fermion problem to two fermion problem:
 
 <img src="/image/download.png" alt="drawing" width="200px"/>
 
+
+# what can it solve/
+
+Light cone in a quantum spin chain
+<img src="/image/cnt.png" alt="drawing" width="200px"/>
+
+
