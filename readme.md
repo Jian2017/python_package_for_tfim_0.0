@@ -34,9 +34,12 @@ then use Pfaffian, converting many fermion problem to two fermion problem:
 <img src="/image/download.png" alt="drawing" width="200px"/>
 
 
-# what can it solve/
+# what can it solve?
 
-Light cone in a quantum spin chain
+
+It can calculate any N-spins space-time correlation function.
+
+### Light cone in a quantum spin chain
 
 <img src="/image/cnt.png" alt="drawing" width="400px"/>
 
