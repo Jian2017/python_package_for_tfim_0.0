@@ -49,5 +49,7 @@ Since spin correlation function (Green function) are the building block of all p
 ### (example 2) Single spin dynamics
 
 
+<img src="/image/sigmaT.png" alt="drawing" width="400px"/>
+
 
 
