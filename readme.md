@@ -39,8 +39,15 @@ then use Pfaffian, converting many fermion problem to two fermion problem:
 
 It can calculate any N-spins space-time correlation function.
 
-### Light cone in a quantum spin chain
+Since spin correlation function (Green function) are the building block of all physical quantities. There program can therefore calculate anything about this model: from the traditional dynamical structure factor, to the fancy  concepts such as entanglement entropy, out-of-time-ordered,.
+
+### (example 1) Light cone in a quantum spin chain
 
 <img src="/image/cnt.png" alt="drawing" width="400px"/>
+
+
+### (example 2) Single spin dynamics
+
+
 
 
