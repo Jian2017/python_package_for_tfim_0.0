@@ -37,6 +37,7 @@ then use Pfaffian, converting many fermion problem to two fermion problem:
 # what can it solve/
 
 Light cone in a quantum spin chain
-<img src="/image/cnt.png" alt="drawing" width="200px"/>
+
+<img src="/image/cnt.png" alt="drawing" width="400px"/>
 
 
