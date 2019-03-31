@@ -5,8 +5,8 @@ Created on Sun Jun 10 14:35:30 2018
 @author: wangj
 """
 
-from package.hamiltonian import simplePureHamiltonian
-from package.PPFtfim import tfim
+from hamiltonian import simplePureHamiltonian
+from PPFtfim import tfim
 import matplotlib.pyplot as plt
 import numpy as np
 
